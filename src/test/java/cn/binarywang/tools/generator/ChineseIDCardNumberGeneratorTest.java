@@ -4,6 +4,7 @@ import static org.testng.Assert.assertNotNull;
 
 import java.util.Date;
 
+import cn.binarywang.tools.generator.base.GenericGenerator;
 import org.testng.annotations.Test;
 
 public class ChineseIDCardNumberGeneratorTest {
@@ -17,13 +18,12 @@ public class ChineseIDCardNumberGeneratorTest {
 
     @Test
     public void testGenerate() {
-        String idCard = ChineseIDCardNumberGenerator.getInstance().generate();
-        System.err.println(idCard);
-        assertNotNull(idCard);
-        if (idCard.charAt(idCard.length()-2)%2 == 0){
-            System.err.println("女");
-        } else {
-            System.err.println("男");
+        ChineseNameGenerator nameGenerator = ChineseNameGenerator.getInstance();
+        GenericGenerator idCardGenerator = ChineseIDCardNumberGenerator.getInstance();
+        for (int i = 0; i < 100; i++) {
+            String name = nameGenerator.generate();
+            String idCard = idCardGenerator.generate();
+            System.out.println(name + ", " + idCard);
         }
     }
 
